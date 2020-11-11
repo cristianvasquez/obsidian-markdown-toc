@@ -1,0 +1,8 @@
+{
+  "id": "markdown-table-of-contents",
+  "name": "Markdown table of contents",
+  "description": "Generates a markdown table of contents.\n",
+  "isDesktopOnly": false,
+  "js": "main.js",
+  "version": "0.0.1"
+}
