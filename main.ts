@@ -1,8 +1,8 @@
 import {App, MarkdownView, Plugin, PluginSettingTab} from "obsidian";
 // @ts-ignore
-import {Remarkable} from "remarkable";
+import Remarkable from "remarkable";
 // @ts-ignore
-import toc from "markdown-toc"
+import toc from "./markdown-toc"
 
 export default class MarkdownToc extends Plugin {
 
@@ -12,13 +12,20 @@ export default class MarkdownToc extends Plugin {
     async onload() {
         console.log("Loading markdown-toc");
 
+        let text = '# AAA\n# BBB\n# CCC\nfoo\nbar\nbaz'
+        let results = new Remarkable()
+            .use(toc.plugin()) // <= register the plugin
+            .render(text)
+        console.log(results.content)
+
+
         this.addCommand({
             id: "markdown-toc",
-            name: "Generate table of contents",
+            name: "Generate",
             callback: () => this.generateTableOfContents(),
             hotkeys: [
                 {
-                    modifiers: ["Mod", "Alt"],
+                    modifiers: ["Mod", "Shift"],
                     key: "t",
                 },
             ],
@@ -34,15 +41,17 @@ export default class MarkdownToc extends Plugin {
         if (view instanceof MarkdownView) {
             // Do work here
             const editor = view.sourceMode.cmEditor;
-            const tableOfContents = this.prettify(editor.getValue());
-            editor.replaceSelection(tableOfContents, "start");
+
+            const text = editor.getValue()
+            editor.replaceSelection(this.generateTOC(text), "start");
         }
     }
 
-    prettify(text: String): string {
-        return new Remarkable()
+    generateTOC(text: String): string {
+        let results = new Remarkable()
             .use(toc.plugin()) // <= register the plugin
-            .render(text);
+            .render(text)
+        return results.content
     }
 }
 

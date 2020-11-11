@@ -1,6 +1,6 @@
 {
   "id": "markdown-table-of-contents",
-  "name": "Markdown table of contents",
+  "name": "Table of contents",
   "description": "Generates a markdown table of contents.\n",
   "isDesktopOnly": false,
   "js": "main.js",
