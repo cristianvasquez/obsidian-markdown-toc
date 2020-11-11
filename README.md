@@ -2,7 +2,7 @@
 
 Uses [markdown-toc](https://github.com/jonschlinkert/markdown-toc) to generate a markdown TOC (table of contents) with Remarkable.
 
-The default hotkey is `Ctrl+Alt+T`.
+The default hotkey is `Ctrl+Shift+T`.
 
 Inserts a table of contents
 
